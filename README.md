@@ -9,6 +9,4 @@ Therefore from software engineering’s viewpoint, the primary aim of
 software technologies is making developers and/or designers’ minds,
 or in an other word, their thinking easy, fluent and with less errors
 when they designing or programming.
-
-
                                                                 - 王青
