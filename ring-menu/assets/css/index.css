@@ -1,0 +1,259 @@
+body {
+    background-color: azure;
+}
+
+ul {
+    list-style-type: none;
+}
+
+#at-plus-container {
+}
+
+#bottom-positioner {
+    position: absolute;
+    top: 50%;
+    left: 45%;
+}
+
+#button {
+    transition-duration: 5s;
+}
+
+#original-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
+#info {
+    opacity: 0.0;
+}
+
+#info-bar {
+    position: absolute;
+}
+
+#control-ring-container {
+    position: absolute;
+}
+
+#original-base {
+    position: absolute;
+
+    background-color: #9A9DC8;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    padding: 3px;
+
+    opacity: 1.0;
+}
+
+#original-extend {
+    position: absolute;
+    top: -10px;
+    left: -10px;
+
+    background-color: #323AA5;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    padding: 7px;
+
+    opacity: 0.0;
+}
+
+ul {
+    margin: 0px;
+    padding: 0px;
+}
+
+li > image {
+
+}
+
+.info > ul > li {
+    position: absolute;
+    opacity: 0.0;
+    padding: 8px;
+}
+
+#control-ring > li {
+    position: absolute;
+    opacity: 0.0;
+
+    background-color: #696969;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    padding: 8px;
+   
+}
+
+#button:hover #original-base {
+    opacity: 0.0;
+}
+
+#button:hover #original-extend {
+    opacity: 1.0;
+}
+
+#button:hover li {
+    opacity: 1.0;
+}
+
+#button:hover .sign-button {
+    position: absolute;
+    opacity: 1.0;
+}
+
+#button:hover .setting-button {
+    position: absolute;
+    opacity: 1.0;
+    padding: 7px 8px 8px 7px;
+}
+
+#button:hover .message-button {
+    position: absolute;
+    padding: 6px 8px 8px 7px;
+    opacity: 1.0;
+}
+
+#button:hover .history-button {
+    position: absolute;
+    padding: 6px 8px 8px 7px;
+    opacity: 1.0;
+}
+
+#button:hover .mask-button {
+    position: absolute;
+    opacity: 1.0;
+}
+
+.message-button > span {
+    position: absolute;
+    top: -5px;
+    left: 22px;
+    display: inline-block;
+    border-radius: 50%;
+    font-weight: bolder;
+    font-size: 18px;
+    color: #FFC6C6;
+    background-color: red;
+    padding-left: 5px;
+    padding-right: 6px;
+}
+
+#button:hover .info {
+    position: absolute;
+    top: -80px;
+    left: -50px;
+
+    background-color: #7E7E7E;
+    border-radius: 50%;
+    width: 130px;
+    height: 130px;
+
+}
+
+#button:hover .info {
+    transform: translate(70px, -90px) scale(1.2, 1.2);
+    transition: transform 0.8s ease-out;
+}
+
+#button:hover .mask-button {
+    position: absolute;
+    transform: translate(-50px, -55px);
+    transition: transform 0.8s ease-out;
+}
+
+#button:hover .history-button {
+    position: absolute;
+    transform: translate(-70px, 0px);
+    transition: transform 0.8s ease-out;
+}
+
+#button:hover .message-button {
+    position: absolute;
+    transform: translate(-55px, 45px);
+    transition: transform 0.8s ease-out;
+}
+
+#button:hover .setting-button {
+    position: absolute;
+    transform: translate(-5px, 65px);
+    transition: transform 0.8s ease-out;
+}
+
+#button:hover .sign-button {
+    position: absolute;
+    transform: translate(53px, 40px);
+    transition: transform 0.8s ease-out;
+}
+
+#button:hover .page-user > img {
+    position: absolute;
+    top: 10px;
+    left: 45px;
+}
+
+#button:hover .page-user > span {
+    position: absolute;
+    top: 10px;
+    left: 75px;
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+}
+
+#button:hover .page-comment > img {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    top: 45px;
+    left: 30px;
+}
+
+#button:hover .page-comment > span {
+    position: absolute;
+    top: 40px;
+    left: 73px;
+    font-size: 30px;
+    font-weight: bolder;
+    color: white;
+}
+
+#button:hover .mine-posted > img {
+    position: absolute;
+    top: 85px;
+    left: 20px;
+}
+
+#button:hover .mine-posted > span {
+    position: absolute;
+    top: 85px;
+    left: 45px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #3CCB95;
+}
+
+.mine-like > img {
+    position: absolute;
+    top: 85px;
+    left: 70px;
+}
+
+.mine-like > span {
+    position: absolute;
+    top: 85px;
+    left: 100px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #3CCB95;
+
+}
+
+
+    transform:translate(85px,100px);
+    transition:transform 2s;
