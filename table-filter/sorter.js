@@ -3,7 +3,6 @@ window.onload = function () {
     var tables = getAllTables();
     makeAllTablesSortable(tables);
     makeAllTablesFilterable(tables);
-
 }
 
 // 判断是否IE浏览器
@@ -29,6 +28,7 @@ function makeAllTablesSortable(tables) {
         table.setAttribute('sortTypeId', '-1');  // 排序的类型，0-升序，1-降序
 
         makeSortable(table);
+        colorlize(table);
     }
 }
 
@@ -120,6 +120,8 @@ function sortTable(th, sortColId) {
         bodyHTML += ('<tr>' + rowsArray[i].innerHTML + '</tr>');
     }
     tbody.innerHTML = bodyHTML + '<tbody>';
+
+    colorlize(table);
 }
 
 // 将table可过滤化并将可过滤的table返回
@@ -152,5 +154,16 @@ function filterTable(input) {
             // 将匹配的文本放在<em>元素内
             tds[i].innerHTML = tds[i].innerHTML.replace(reg, '<em style="background-color:yellow;font-weight:bolder">$1</em>');
         }
+    }
+
+    colorlize(table);
+}
+
+// 表格偶数行加背景色
+function colorlize(table) {
+    rows = table.getElementsByTagName('tr');
+
+    for (var i = 2; i < rows.length; i += 2) {
+        rows[i].style.backgroundColor = '#D1D1D1';
     }
 }
