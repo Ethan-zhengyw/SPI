@@ -4,7 +4,7 @@
     tmpDoc;
 
 window.onload = function () {
-    tmpDoc = document.firstChild.innerHTML;
+    tmpDoc = document.getElementsByTagName('body')[0].innerHTML;
     var IDs = ['A', 'B', 'C', 'D', 'E'];
 
     for (var i = 0; i < 5; i++) {
@@ -14,6 +14,11 @@ window.onload = function () {
 
     var button = document.getElementById('at-plus-container');
     button.setAttribute('onmouseleave', 'resetCalculator()');
+
+
+    // for S1
+    document.getElementById('original-extend').setAttribute(
+        'onclick', 'robotOneFinger()');
 }
 
 function resetCalculator() {
@@ -49,10 +54,8 @@ function getRandomNumFromBackEnd(li, i) {
 
 // 禁用或启用按钮，通过背景颜色和onclick属性，已经在disabled列表里的就不要考虑了
 function disableClick(senderID, choice) {
-    console.log(senderID);
     for (var i = 0; i < 5; i++) {
         if (i != senderID && !(i in disabled)) {
-            console.log(i in disabled);
             if (choice) {
                 adders[i].style.backgroundColor = '#666';
                 adders[i].setAttribute('onclick', '');
@@ -89,11 +92,54 @@ function showSum() {
         sum += Number(randoms[i]);
     }
 
-    console.log(sum);
     sumObj = document.getElementById('SUM').firstChild;
     sumObj.innerText = sum;
     sumObj.style.opacity = 1.0;
 
     bigBubble.style.backgroundColor = '#666';
     bigBubble.setAttribute('onclick', '');
+}
+
+// 仿真机器人，顺序（一指禅）执行代码
+function robotOneFinger() {
+    autoClick(adders[0], 0);
+}
+
+// callback function for S1
+function autoClick(li, i) {
+    if (i == 5) {
+        setTimeout('showSum()', 200);
+        document.getElementById('original-extend').setAttribute(
+            'onclick', '');
+        return;
+    }
+
+    console.log(i);
+    unread = adders[i].getElementsByTagName('strong')[0];
+    unread.style.opacity = 1.0;
+    unread.innerText = '。。。';
+    disableClick(i, true);
+
+    var req = new XMLHttpRequest();
+    req.open('GET', '../getRandomNum', true);
+    req.send();
+    req.onreadystatechange = function () {
+        if (req.readyState == 4 && req.status == 200) {
+            randoms[i] = req.response;
+            unread.innerText = randoms[i];
+
+            disableClick(i, false);  // 激活其余按钮
+
+            // 永久灭活该按钮
+            disabled[i] = i;
+            adders[i].style.backgroundColor = '#666';
+            adders[i].setAttribute('onclick', '');
+
+            // 检测是否所有按钮都已激活，是的话激活大气泡
+            checkAll();
+
+            console.log(i + 1);
+            autoClick(adders[i + 1], i + 1);
+        }
+    }
 }

@@ -14,20 +14,19 @@ window.onload = function () {
 
     var button = document.getElementById('at-plus-container');
     button.setAttribute('onmouseleave', 'resetCalculator()');
-}
 
-function resetCalculator() {
-    setTimeout('location.replace(document.referrer)', 1500);
+    // for S3
+    document.getElementById('original-extend').setAttribute('onclick', 'robotFiveFinger()');
 }
 
 function getRandomNumFromBackEnd(li, i) {
-    unread = adders[i].getElementsByTagName('strong')[0];
+    var unread = adders[i].getElementsByTagName('strong')[0];
     unread.style.opacity = 1.0;
     unread.innerText = '。。。';
-    disableClick(i, true);
+    // disableClick(i, true);
 
     var req = new XMLHttpRequest();
-    req.open('GET', '../getRandomNum', true);
+    req.open('GET', '../getRandomNum' + i, true);
     req.send();
     req.onreadystatechange = function (li) {
         if (req.readyState == 4 && req.status == 200) {
@@ -45,6 +44,10 @@ function getRandomNumFromBackEnd(li, i) {
             checkAll();
         }
     }
+}
+
+function resetCalculator() {
+    setTimeout('location.replace(document.referrer)', 1500);
 }
 
 // 禁用或启用按钮，通过背景颜色和onclick属性，已经在disabled列表里的就不要考虑了
@@ -79,8 +82,11 @@ function checkAll() {
         bigBubble.style.backgroundColor = '#2145A0';
         bigBubble.setAttribute('onclick', 'showSum()');
     }
+
+    return allGetNumber;
 }
 
+// 在大气泡中显示结果, 并灭活大气泡
 function showSum() {
     var sum = 0,
         bigBubble = document.getElementById('SUM').parentNode.parentNode;
@@ -96,4 +102,37 @@ function showSum() {
 
     bigBubble.style.backgroundColor = '#666';
     bigBubble.setAttribute('onclick', '');
+}
+
+// 仿真机器人，并行（五指金龙）执行代码
+function robotFiveFinger() {
+    for (var i = 0; i < 5; i++) {
+         clickOneButton(i);
+    }
+}
+
+function clickOneButton(i) {
+    var unread = adders[i].getElementsByTagName('strong')[0];
+    unread.style.opacity = 1.0;
+    unread.innerText = '。。。';
+
+    var req = new XMLHttpRequest();
+    req.open('GET', '../getRandomNum' + i, true);
+    req.send();
+    req.onreadystatechange = function () {
+        if (req.readyState == 4 && req.status == 200) {
+            randoms[i] = req.response;
+            unread.innerText = randoms[i];
+
+            // 永久灭活该按钮
+            disabled[i] = i;
+            adders[i].style.backgroundColor = '#666';
+            adders[i].setAttribute('onclick', '');
+
+            // 检测是否所有按钮都已激活，是的话激活大气泡
+            if (checkAll()) {
+                showSum();
+            }
+        }
+    }
 }
